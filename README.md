@@ -60,16 +60,6 @@ npm run start
 
 ## Deploy to GitHub Pages
 
-### Automatic (via GitHub Actions)
-
-1. **Push to `main`** — the included `.github/workflows/deploy.yml` workflow automatically builds and deploys.
-
-2. **Enable GitHub Pages**:
-   - Go to your repo **Settings → Pages**
-   - Under **Source**, select **GitHub Actions**
-
-3. **Done.** Every push to `main` triggers a new deployment.
-
 ### Manual
 
 ```bash
@@ -77,13 +67,14 @@ npm run build
 npx gh-pages -d out -t true
 ```
 
+Alternatively, you can upload the contents of the `out/` folder directly to a GitHub Pages branch.
+
 ---
 
 ## Repository Structure
 
 ```
 repo/
-├── .github/workflows/deploy.yml   # GitHub Actions deployment
 ├── src/
 │   ├── app/                        # Next.js App Router pages
 │   ├── components/
@@ -94,9 +85,9 @@ repo/
 │   │   ├── three/                 # Hero3D, PhotoReel3D
 │   │   └── ui/                    # CustomCursor, GlassButton, GlassCard, ThemeToggle
 │   ├── hooks/                     # useMediaQuery, useAnimation, useMousePosition, useParallax
-│   ├── lib/                       # filters.ts, constants.ts, utils.ts, path.ts
+│   ├── lib/                       # filters.ts, constants.ts, utils.ts
 │   └── store/                     # zustand stores (imageStore, filterStore, uiStore)
-├── next.config.ts                 # Static export + basePath config
+├── next.config.ts                 # Static export config
 └── package.json
 ```
 

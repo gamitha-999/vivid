@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Camera, Menu, X, Home, Image, Info, Upload } from 'lucide-react'
 import ThemeToggle from '@/components/ui/ThemeToggle'
@@ -114,9 +113,14 @@ export default function Header() {
               !isMobile && 'rounded-2xl'
             )}
           >
-            <Link
+            <a
               href="/"
               className="flex items-center gap-2 md:gap-3 min-h-[44px]"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.hash = '';
+                window.location.reload();
+              }}
             >
               <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-[#0071e3] to-[#40a9ff] flex items-center justify-center shadow-lg flex-shrink-0">
                 <Camera className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
@@ -129,7 +133,7 @@ export default function Header() {
                   Studio
                 </span>
               </div>
-            </Link>
+            </a>
 
             <nav className="hidden md:flex items-center gap-6">
               {['Filters', 'Gallery', 'About'].map((item) => (

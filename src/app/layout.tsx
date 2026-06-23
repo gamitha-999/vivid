@@ -17,12 +17,10 @@ export const metadata: Metadata = {
   title: 'iPhone Filters Studio — Preview Apple Camera Filters',
   description:
     'Upload your photos and preview all Apple iPhone camera filters in real time. Experience the premium photo editing studio.',
-  metadataBase: new URL('https://gamitha-999.github.io'),
   openGraph: {
     title: 'iPhone Filters Studio',
     description: 'Preview Apple iPhone camera filters in real time',
     type: 'website',
-    url: '/VIVID',
   },
   appleWebApp: {
     capable: true,
