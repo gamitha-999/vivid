@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# iPhone Filters Studio
+
+A premium web application for previewing and applying Apple iPhone camera filters on your photos in real time — entirely in the browser.
+
+Built with Next.js (static export), TypeScript, Tailwind CSS, Framer Motion, GSAP, Three.js, and Zustand. Fully client-side — no backend, no server, no API routes.
+
+---
+
+## Features
+
+- **10 iPhone Filter Presets** — Original, Vivid, Vivid Warm, Vivid Cool, Dramatic, Dramatic Warm, Dramatic Cool, Mono, Silvertone, Noir
+- **Real-time Preview** — instant filter application via CSS and Canvas pixel manipulation
+- **Side-by-Side Compare** — touch-compatible before/after slider
+- **Intensity Slider** — custom filter strength adjustment
+- **Export** — download full-resolution PNG or JPG
+- **3D Hero** — Three.js floating card effects (desktop only)
+- **Dark Mode** — system-aware with manual toggle
+- **Mobile-First** — bottom nav bar, swipeable filter gallery, safe area insets
+- **Custom Cursor** — with trail and click particles (desktop only)
+- **Background Effects** — gradient mesh, aurora lights, particles, noise overlay
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- npm
+
+### Install
+
+```bash
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Static output is generated in the `out/` folder.
 
-To learn more about Next.js, take a look at the following resources:
+You can preview it locally:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Deploy to GitHub Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Automatic (via GitHub Actions)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Push to `main`** — the included `.github/workflows/deploy.yml` workflow automatically builds and deploys.
+
+2. **Enable GitHub Pages**:
+   - Go to your repo **Settings → Pages**
+   - Under **Source**, select **GitHub Actions**
+
+3. **Done.** Every push to `main` triggers a new deployment.
+
+### Manual
+
+```bash
+npm run build
+npx gh-pages -d out -t true
+```
+
+---
+
+## Repository Structure
+
+```
+repo/
+├── .github/workflows/deploy.yml   # GitHub Actions deployment
+├── src/
+│   ├── app/                        # Next.js App Router pages
+│   ├── components/
+│   │   ├── effects/               # Aurora, GradientMesh, Particles, NoiseOverlay
+│   │   ├── features/              # ImageUpload, FilterPreview, FilterGallery, ExportPanel, etc.
+│   │   ├── gallery/               # InfiniteGallery, MasonryGrid
+│   │   ├── layout/                # Header, Footer, ClientLayout, ScrollProgress, PageTransition
+│   │   ├── three/                 # Hero3D, PhotoReel3D
+│   │   └── ui/                    # CustomCursor, GlassButton, GlassCard, ThemeToggle
+│   ├── hooks/                     # useMediaQuery, useAnimation, useMousePosition, useParallax
+│   ├── lib/                       # filters.ts, constants.ts, utils.ts, path.ts
+│   └── store/                     # zustand stores (imageStore, filterStore, uiStore)
+├── next.config.ts                 # Static export + basePath config
+└── package.json
+```
+
+---
+
+## Configuration
+
+### Environment Variables (optional)
+
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_BASE_PATH` | Override the base path (e.g. `/my-repo`) for testing custom domains |
+| `GITHUB_REPOSITORY` | Auto-set in CI; used to derive the base path |
+
+The `next.config.ts` automatically detects the GitHub repository from `GITHUB_REPOSITORY` and sets the correct base path. For a user site (`username.github.io`), no base path is needed.
+
+---
+
+## Tech Stack
+
+- **Next.js 16** — static site generation (`output: 'export'`)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Framer Motion** — animations
+- **GSAP** — scroll-triggered animations
+- **Three.js / React Three Fiber** — 3D hero effects
+- **Zustand** — state management
+- **React Dropzone** — file upload
+- **Lucide React** — icons
+- **Canvas API / CSS Filters** — image processing
+
+---
+
+## License
+
+MIT. Not affiliated with Apple Inc.
